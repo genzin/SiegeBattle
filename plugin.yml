@@ -1,0 +1,15 @@
+name: siegebattle
+main: jp.epepe.siege.main
+version: 1.0.0
+author: Genzin
+commands:
+    sb:
+       description: Siege Battle no Command dayo
+       permission: siege.sb
+permissions:
+    siege.*:
+       description: Siege Battle admin no Command dayo
+       default: op
+    siege.sb:
+       description: Siege Battle no Command dayo
+       default: true
