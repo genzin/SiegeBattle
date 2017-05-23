@@ -1,18 +1,28 @@
 package jp.epepe.siege;
 
+import org.bukkit.Bukkit;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import jp.epepe.siege.Library.codes;
 import jp.epepe.siege.Listener.EventListener;
 
 public class main extends JavaPlugin implements Listener{
 	public EventListener el = null;
 
+	BossBar bb = Bukkit.createBossBar("ちんちん", BarColor.PURPLE, BarStyle.SEGMENTED_10, BarFlag.DARKEN_SKY);
+
 	public void onEnable(){
 		el = new EventListener(this);
+
+		bb.setProgress(1);
 	}
 
 	public void onDisable(){
@@ -39,8 +49,23 @@ public class main extends JavaPlugin implements Listener{
 				String cmd = args[0];
 				if(cmd != null){
 
-					if(cmd.equalsIgnoreCase("test")){
-						p.sendMessage("ちんこ");
+					if(cmd.equalsIgnoreCase("ad")){
+						bb.addPlayer(p);
+						double current = bb.getProgress();
+						codes.sendPlayer(p, "" + current);
+					}
+					if(cmd.equalsIgnoreCase("a")){
+						double current = bb.getProgress();
+						bb.setProgress(current -0.1);
+						codes.sendPlayer(p, "" + current);
+					}
+					if(cmd.equalsIgnoreCase("b")){
+						double current = bb.getProgress();
+						bb.setProgress(current +0.1);
+						codes.sendPlayer(p, "" + current);
+					}
+					if(cmd.equalsIgnoreCase("c")){
+						bb.removePlayer(p);
 					}
 				}
 			}
