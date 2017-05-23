@@ -66,6 +66,7 @@ public class main extends JavaPlugin implements Listener{
 					}
 					if(cmd.equalsIgnoreCase("c")){
 						bb.removePlayer(p);
+						p.sendMessage("a");
 					}
 				}
 			}
