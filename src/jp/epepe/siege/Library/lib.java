@@ -1,11 +1,15 @@
 package jp.epepe.siege.Library;
 
 import java.lang.reflect.Field;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 import net.minecraft.server.v1_11_R1.ChatMessage;
 import net.minecraft.server.v1_11_R1.IChatBaseComponent;
@@ -13,7 +17,9 @@ import net.minecraft.server.v1_11_R1.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_11_R1.PacketPlayOutTitle;
 import net.minecraft.server.v1_11_R1.PacketPlayOutTitle.EnumTitleAction;
 
-public class codes {
+public class lib {
+
+	static Random rnd = new Random();
 
 	static public void sendPlayer(Player p, String msg){
 		if (p != null){
@@ -23,6 +29,36 @@ public class codes {
 			return;
 		}
 	}
+
+
+
+	static public void Soundworld(Location loc, Player p, Sound s ,Float f ,Float volume){
+		float pitch = rnd.nextInt(4)*f;
+		p.getWorld().playSound(p.getLocation(), s, volume, pitch + 0.4F);
+	}
+
+	static public void SoundPlayer(Player p, Sound s , Float f){
+		float pitch = rnd.nextInt(4) *f;
+		p.playSound(p.getLocation(), s, 10, pitch + 0.4F);
+	}
+
+	static public void SoundAllPlayer(Sound s, Float f){
+		for(Player p : Bukkit.getOnlinePlayers()){
+			float pitch = rnd.nextInt(4)*f;
+			p.playSound(p.getLocation(), s, 10, pitch + 0.4F);
+		}
+	}
+
+	@SuppressWarnings("deprecation")
+	static public void SoundTeamPlayer(Team t ,Sound s, Float f){
+		for(Player p : Bukkit.getOnlinePlayers()){
+			if(t.hasPlayer(p)){
+				float pitch = rnd.nextInt(4)*f;
+				p.playSound(p.getLocation(), s, 10, pitch + 0.4F);
+			}
+		}
+	}
+
 	public static void sendTitle(String main, String sub) {
 		for(Player players : Bukkit.getOnlinePlayers()) {
 			IChatBaseComponent text = new ChatMessage(main);
