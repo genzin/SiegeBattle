@@ -3,6 +3,7 @@ package jp.epepe.siege.Library;
 import java.lang.reflect.Field;
 
 import org.bukkit.Bukkit;
+import org.bukkit.boss.BossBar;
 import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -67,6 +68,17 @@ public class codes {
 
 		CraftPlayer cp = (CraftPlayer) player;
 		cp.getHandle().playerConnection.sendPacket(tablist);
+	}
+
+	public static void sendBossBar(BossBar bb){
+
+	}
+
+	public static void clearBossBar(BossBar bb){
+		for(Player p : Bukkit.getOnlinePlayers()){
+			bb.removePlayer(p);
+			sendPlayer(null, "BossBarをリセットしました。");
+		}
 	}
 
 }

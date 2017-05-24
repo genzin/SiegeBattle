@@ -17,7 +17,7 @@ import jp.epepe.siege.Listener.EventListener;
 public class main extends JavaPlugin implements Listener{
 	public EventListener el = null;
 
-	BossBar bb = Bukkit.createBossBar("ちんちん", BarColor.PURPLE, BarStyle.SEGMENTED_10, BarFlag.DARKEN_SKY);
+	BossBar bb = Bukkit.createBossBar("", BarColor.PURPLE, BarStyle.SEGMENTED_10, BarFlag.DARKEN_SKY);
 
 	public void onEnable(){
 		el = new EventListener(this);
@@ -65,6 +65,7 @@ public class main extends JavaPlugin implements Listener{
 						codes.sendPlayer(p, "" + current);
 					}
 					if(cmd.equalsIgnoreCase("c")){
+						
 						bb.removePlayer(p);
 						p.sendMessage("a");
 					}
