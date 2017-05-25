@@ -1,5 +1,7 @@
 package jp.epepe.siege;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -16,11 +18,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import jp.epepe.siege.Library.lib;
 import jp.epepe.siege.Listener.EventListener;
+import jp.epepe.siege.Listener.LobbyListener;
 
 public class main extends JavaPlugin implements Listener{
 
 
 	public EventListener el = null;
+	public LobbyListener ll = null;
+
+	//プレイヤー判定 null:null 看板押した人:join 赤:Red 青:blue
+	//Admin: admin Developer: dev
+	public HashMap<String, String> JoinPlayers = new HashMap<String, String>();
 
 	BossBar bb = Bukkit.createBossBar("BossBar", BarColor.PURPLE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 	boolean start = false;
@@ -28,8 +36,14 @@ public class main extends JavaPlugin implements Listener{
 
 	public void onEnable(){
 		el = new EventListener(this);
+		ll = new LobbyListener(this);
+
+
+
 		Timer();
 		FirstSettings();
+
+		saveDefaultConfig();
 	}
 
 	public void onDisable(){
@@ -62,6 +76,7 @@ public class main extends JavaPlugin implements Listener{
 
 					if(cmd.equalsIgnoreCase("stop")){
 						start = false;
+
 					}
 
 
@@ -71,15 +86,15 @@ public class main extends JavaPlugin implements Listener{
 						lib.sendPlayer(p, "" + current);
 					}
 					if(cmd.equalsIgnoreCase("a")){
-						int people = Bukkit.getOnlinePlayers().length();
+						int people = Bukkit.getOnlinePlayers().size();
 						bb.setTitle("people :" + people);
 					}
 					if(cmd.equalsIgnoreCase("b")){
-						int people = Bukkit.getOnlinePlayers().length();
+						int people = Bukkit.getOnlinePlayers().size();
 						bb.setTitle("people :" + people +1);
 					}
 					if(cmd.equalsIgnoreCase("c")){
-						int people = Bukkit.getOnlinePlayers().length();
+						int people = Bukkit.getOnlinePlayers().size();
 						bb.setTitle("people :" + people+2);
 					}
 				}
