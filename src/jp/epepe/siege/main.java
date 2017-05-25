@@ -19,12 +19,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import jp.epepe.siege.Library.lib;
 import jp.epepe.siege.Listener.EventListener;
 import jp.epepe.siege.Listener.LobbyListener;
+import jp.epepe.siege.Manager.StringManager;
 
 public class main extends JavaPlugin implements Listener{
 
 
 	public EventListener el = null;
 	public LobbyListener ll = null;
+	public StringManager sm = null;
 
 	//プレイヤー判定 null:null 看板押した人:join 赤:Red 青:blue
 	//Admin: admin Developer: dev
@@ -35,6 +37,7 @@ public class main extends JavaPlugin implements Listener{
 
 
 	public void onEnable(){
+		sm = new StringManager(this);
 		el = new EventListener(this);
 		ll = new LobbyListener(this);
 

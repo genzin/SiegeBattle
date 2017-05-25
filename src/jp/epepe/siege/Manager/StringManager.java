@@ -1,13 +1,31 @@
 package jp.epepe.siege.Manager;
 
+import java.util.Random;
+
 import org.bukkit.ChatColor;
+import org.bukkit.event.Listener;
 
-public class StringManager {
+import jp.epepe.siege.main;
 
-	public static String prefix = ChatColor.GOLD + "[Siege] ";
+public class StringManager  implements Listener {
+	Random rnd = new Random();
 
-	public static String Permission = prefix + "あなたには権限がありません。";
-	public static String UnknownCommand = prefix + "コマンドが存在しません。 /sb helpでコマンドを確認してください。";
+	private main plugin;
+
+	public StringManager(main plugin) {
+		this.plugin = plugin;
+
+		this.plugin.getServer().getPluginManager().registerEvents(this, this.plugin);
+
+		return;
+	}
+
+
+	public String prefixconfig = plugin.getConfig().getString("prefix.string");
+	public String prefix = ChatColor.GOLD +  prefixconfig +ChatColor.RESET;
+
+	public String Permission = prefix + "あなたには権限がありません。";
+	public String UnknownCommand = prefix + "コマンドが存在しません。 /sb helpでコマンドを確認してください。";
 
 
 
@@ -15,8 +33,8 @@ public class StringManager {
 
 
 
-	public static String Join01 = ChatColor.DARK_PURPLE + "Join to the";
-	public static String Join02 = ChatColor.BLACK + "Join to the";
-	public static String Join03 = ChatColor.BLACK + "Game";
+	public String Join01 = ChatColor.DARK_PURPLE + "> Siege Battle <";
+	public String Join02 = ChatColor.BLACK + "Join to the";
+	public String Join03 = ChatColor.BLACK + "Game";
 
 }

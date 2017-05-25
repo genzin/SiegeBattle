@@ -19,7 +19,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import jp.epepe.siege.main;
 import jp.epepe.siege.Library.lib;
-import jp.epepe.siege.Manager.StringManager;
 
 public class LobbyListener implements Listener {
 	Random rnd = new Random();
@@ -58,9 +57,9 @@ public class LobbyListener implements Listener {
 			}
 
 			if (line1.equals("sj")) {
-				e.setLine(0, StringManager.Join01);
-				e.setLine(1, StringManager.Join02);
-				e.setLine(2, StringManager.Join03);
+				e.setLine(0, plugin.sm.Join01);
+				e.setLine(1, plugin.sm.Join02);
+				e.setLine(2, plugin.sm.Join03);
 			}
 
 		}
@@ -92,8 +91,8 @@ public class LobbyListener implements Listener {
 			String line2 = sign.getLine(1);
 			String line3 = sign.getLine(2);
 
-			if (line2.contains(StringManager.Join02)){
-				if(line3.contains(StringManager.Join03)) {
+			if (line2.contains(plugin.sm.Join02)){
+				if(line3.contains(plugin.sm.Join03)) {
 					if(plugin.JoinPlayers.containsKey(p.getName()) == true){
 						Bukkit.broadcastMessage("ちんこ");
 					} else {
