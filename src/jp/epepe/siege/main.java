@@ -22,7 +22,7 @@ public class main extends JavaPlugin implements Listener{
 
 	public EventListener el = null;
 
-	BossBar bb = Bukkit.createBossBar("ああん", BarColor.PURPLE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
+	BossBar bb = Bukkit.createBossBar("BossBar", BarColor.PURPLE, BarStyle.SOLID, BarFlag.DARKEN_SKY);
 	boolean start = false;
 
 
@@ -71,13 +71,16 @@ public class main extends JavaPlugin implements Listener{
 						lib.sendPlayer(p, "" + current);
 					}
 					if(cmd.equalsIgnoreCase("a")){
-						bb.setTitle("ちんこ");
+						int people = Bukkit.getOnlinePlayers().length();
+						bb.setTitle("people :" + people);
 					}
 					if(cmd.equalsIgnoreCase("b")){
-						bb.setTitle("ぱいぱん");
+						int people = Bukkit.getOnlinePlayers().length();
+						bb.setTitle("people :" + people +1);
 					}
 					if(cmd.equalsIgnoreCase("c")){
-						bb.setTitle("おまんまん");
+						int people = Bukkit.getOnlinePlayers().length();
+						bb.setTitle("people :" + people+2);
 					}
 				}
 			}
